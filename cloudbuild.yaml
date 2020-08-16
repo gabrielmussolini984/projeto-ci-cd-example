@@ -1,0 +1,15 @@
+steps: 
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gabriel984/projeto-ci-cd-example:latest', '-t', 'gabriel984/projeto-ci-cd-example:$SHORT_SHA', '.']
+
+  - name: 'docker'
+    args: ['run','-d','--name', 'projeto-ci-cd-example', 'gabriel984/projeto-ci-cd-example:latest']
+
+  - name: 'docker'
+    args: ['exec', 'projeto-ci-cd-example', 'npm', 'run', 'test']
+
+  # - name: 'docker'
+  #   args: ['push', 'gabriel984/projeto-ci-cd-example:latest']
+
+  # - name: 'docker'
+  #   args: ['push', 'gabriel984/projeto-ci-cd-example:$SHORT_SHA']
