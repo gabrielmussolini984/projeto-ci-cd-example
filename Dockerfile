@@ -1,4 +1,4 @@
-FROM node:12.14.0-alpine
+FROM gcr.io/cloud-builders/gcloud
 
 WORKDIR /usr/src/app
 
