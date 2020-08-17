@@ -25,5 +25,4 @@ steps:
 secrets:
   - kmsKeyName: projects/projetoagenda/locations/global/keyRings/teste-cd/cryptoKeys/key-name
     secretEnv:
-      PASSWORD: 'CiQAOPiepopLB3Xg5gWUUZOVjROSFDMldXHOoKcr0pnM9dMwkVgSMwArHb7x8nPb9aFyRnY5KMvb
-wBNE+WdknRr529WWqueXUTCs3YxZhXiMYHcHWA47AJz72w=='
+      PASSWORD: CiQAOPiepopLB3Xg5gWUUZOVjROSFDMldXHOoKcr0pnM9dMwkVgSMwArHb7x8nPb9aFyRnY5KMvbwBNE+WdknRr529WWqueXUTCs3YxZhXiMYHcHWA47AJz72w==
