@@ -5,19 +5,19 @@ steps:
     secretEnv: ["PASSWORD"]
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gabriel984/projeto-ci-cd-example:latest', '-t', 'gabriel984/projeto-ci-cd-example:$SHORT_SHA', '.']
+    args: ['build', '-t', 'gcr.io/projetoagenda/projeto-ci-cd-example:latest', '-t', 'gcr.io/projetoagenda/projeto-ci-cd-example:$SHORT_SHA', '.']
 
   - name: 'docker'
-    args: ['run','-d','--name', 'projeto-ci-cd-example', 'gabriel984/projeto-ci-cd-example:latest']
+    args: ['run','-d','--name', 'projeto-ci-cd-example', 'gcr.io/projetoagenda/projeto-ci-cd-example:latest']
 
   - name: 'docker'
     args: ['exec', 'projeto-ci-cd-example', 'npm', 'run', 'test']
 
   - name: 'docker'
-    args: ['push', 'gabriel984/projeto-ci-cd-example:latest']
+    args: ['push', 'gcr.io/projetoagenda/projeto-ci-cd-example:latest']
 
   - name: 'docker'
-    args: ['push', 'gabriel984/projeto-ci-cd-example:$SHORT_SHA']
+    args: ['push', 'gcr.io/projetoagenda/projeto-ci-cd-example:$SHORT_SHA']
 
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['run', 'deploy', 'projeto-ci-cd-example', '--image', 'gcr.io/projetoagenda/projeto-ci-cd-example:$SHORT_SHA', '--region', 'us-central1', '--platform', 'managed', '--allow-unauthenticated']
