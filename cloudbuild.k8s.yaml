@@ -1,0 +1,26 @@
+steps: 
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/projetoagenda/projeto-ci-cd-example:latest', '-t', 'gcr.io/projetoagenda/projeto-ci-cd-example:$SHORT_SHA', '.']
+
+  - name: 'docker'
+    args: ['run','-d','--name', 'projeto-ci-cd-example', 'gcr.io/projetoagenda/projeto-ci-cd-example:latest']
+
+  - name: 'docker'
+    args: ['exec', 'projeto-ci-cd-example', 'npm', 'run', 'test']
+
+  - name: 'docker'
+    args: ['push', 'gcr.io/projetoagenda/projeto-ci-cd-example:latest']
+
+  - name: 'docker'
+    args: ['push', 'gcr.io/projetoagenda/projeto-ci-cd-example:$SHORT_SHA']
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: [
+      'set',
+      'image',
+      'deployment',
+      'teste-ci-cd-example',
+      'teste-ci-cd-example=gcr.io/projetoagenda/projeto-ci-cd-example:$SHORT_SHA'
+    ]
+    env:
+      - 'CLOUDSKD_COMPUTE_ZONE=us-central1-c'

@@ -1,8 +1,8 @@
 steps: 
-  - name: gcr.io/cloud-builders/docker
-    entrypoint: 'bash'
-    args: [ '-c', 'docker login --username=gabriel984 --password=$$PASSWORD']
-    secretEnv: ["PASSWORD"]
+  # - name: gcr.io/cloud-builders/docker
+  #   entrypoint: 'bash'
+  #   args: [ '-c', 'docker login --username=dockerLogin --password=$$PASSWORD']
+  #   secretEnv: ["PASSWORD"]
 
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/projetoagenda/projeto-ci-cd-example:latest', '-t', 'gcr.io/projetoagenda/projeto-ci-cd-example:$SHORT_SHA', '.']
@@ -22,7 +22,7 @@ steps:
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['run', 'deploy', 'projeto-ci-cd-example', '--image', 'gcr.io/projetoagenda/projeto-ci-cd-example:$SHORT_SHA', '--region', 'us-central1', '--platform', 'managed', '--allow-unauthenticated']
 
-secrets:
-  - kmsKeyName: projects/projetoagenda/locations/global/keyRings/teste-cd/cryptoKeys/key-name
-    secretEnv:
-      PASSWORD: CiQAOPiepopLB3Xg5gWUUZOVjROSFDMldXHOoKcr0pnM9dMwkVgSMwArHb7x8nPb9aFyRnY5KMvbwBNE+WdknRr529WWqueXUTCs3YxZhXiMYHcHWA47AJz72w==
+# secrets:
+#   - kmsKeyName: projects/projetoagenda/locations/global/keyRings/teste-cd/cryptoKeys/key-name
+#     secretEnv:
+#       PASSWORD: base64Password
