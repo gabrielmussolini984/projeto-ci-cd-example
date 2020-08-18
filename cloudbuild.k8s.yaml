@@ -23,4 +23,5 @@ steps:
       'teste-ci-cd-example=gcr.io/projetoagenda/projeto-ci-cd-example:$SHORT_SHA'
     ]
     env:
-      - 'CLOUDSKD_COMPUTE_ZONE=us-central1-c'
+    - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=projeto-ci-cd'
