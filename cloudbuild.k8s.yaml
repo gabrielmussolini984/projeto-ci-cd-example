@@ -19,8 +19,8 @@ steps:
       'set',
       'image',
       'deployment',
-      'teste-ci-cd-example',
-      'teste-ci-cd-example=gcr.io/projetoagenda/projeto-ci-cd-example:$SHORT_SHA'
+      'projeto-ci-cd-example',
+      'projeto-ci-cd-example=gcr.io/projetoagenda/projeto-ci-cd-example:$SHORT_SHA'
     ]
     env:
     - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
